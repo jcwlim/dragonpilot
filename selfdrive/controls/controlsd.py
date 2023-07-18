@@ -778,10 +778,7 @@ class Controls:
       else:
         self.steer_limited = abs(CC.actuators.steer - CC.actuatorsOutput.steer) > 1e-2
 
-    if NO_IR_CTRL:
-      self.sm['driverMonitoringState'].awarenessStatus = 1.
-
-    force_decel = (not NO_IR_CTRL and self.sm['driverMonitoringState'].awarenessStatus < 0.) or \
+   force_decel = (not NO_IR_CTRL and self.sm['driverMonitoringState'].awarenessStatus < 0.) or \
                   (self.state == State.softDisabling)
 
     # Curvature & Steering angle
