@@ -14,9 +14,9 @@ from selfdrive.controls.lib.lane_planner import LanePlanner
 
 TRAJECTORY_SIZE = 33
 if EON:
-  CAMERA_OFFSET = -0.06
+  CAMERA_OFFSET = 0.26
 else:
-  CAMERA_OFFSET = 0.04
+  CAMERA_OFFSET = 0.14
 
 
 PATH_COST = 1.0
