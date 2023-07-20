@@ -172,7 +172,8 @@ class LongitudinalPlanner:
     md = sm['modelV2']
     if abs(sm['carState'].steeringAngleDeg) <= 60 and len(md.orientation.x) == len(md.position.x) == TRAJECTORY_SIZE:
       if md.position.x[TRAJECTORY_SIZE - 1] < interp(v_ego_kph, _DP_E2E_STOP_BP, _DP_E2E_STOP_DIST):
-        self.dp_e2e_stop_count += 1
+        #self.dp_e2e_stop_count += 1
+        self.dp_e2e_stop_count = 0 # disable stop sign
       else:
         self.dp_e2e_stop_count = 0
     else:
@@ -239,11 +240,11 @@ class LongitudinalPlanner:
 
     # rick - vision turn controller from move-fast team
     # https://github.com/move-fast/openpilot/blob/develop/selfdrive/controls/lib/vision_turn_controller.py
-    self.vision_turn_controller.update(not reset_state, self.v_desired_filter.x, self.a_desired, v_cruise, sm)
-    if self.vision_turn_controller.is_active:
-      if min(v_cruise, self.vision_turn_controller.v_turn) == self.vision_turn_controller.v_turn:
-        self.a_desired = self.vision_turn_controller.a_target
-        v_cruise = self.vision_turn_controller.v_turn
+    #self.vision_turn_controller.update(not reset_state, self.v_desired_filter.x, self.a_desired, v_cruise, sm)
+    #if self.vision_turn_controller.is_active:
+      #if min(v_cruise, self.vision_turn_controller.v_turn) == self.vision_turn_controller.v_turn:
+        #self.a_desired = self.vision_turn_controller.a_target
+        #v_cruise = self.vision_turn_controller.v_turn
 
     if force_slow_decel:
       v_cruise = 0.0
