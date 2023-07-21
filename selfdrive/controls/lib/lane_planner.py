@@ -21,7 +21,7 @@ TRAJECTORY_SIZE = 33
 # camera offset is meters from center car to camera
 # model path is in the frame of the camera
 if EON:
-  CAMERA_OFFSET = 0.25
+  CAMERA_OFFSET = 0.20
   PATH_OFFSET = 0.0
 else:
   CAMERA_OFFSET = 0.04
