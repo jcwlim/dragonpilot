@@ -257,6 +257,10 @@ class CarInterface(CarInterfaceBase):
     else:
       ret.enableBsm = 0x58b in fingerprint[0]
 
+    # Detect smartMDPS, which bypasses EPS low speed lockout, allowing sunnypilot to send steering commands down to 0
+    if 0x2AA in fingerprint[0]:
+      ret.minSteerSpeed = 0.
+
     # *** panda safety config ***
     CarInterfaceBase.dp_lat_tune_collection(candidate, ret.latTuneCollection)
     CarInterfaceBase.configure_dp_tune(ret.lateralTuning, ret.latTuneCollection)
