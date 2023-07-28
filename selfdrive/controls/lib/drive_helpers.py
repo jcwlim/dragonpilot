@@ -10,10 +10,10 @@ from system.hardware import TICI
 # WARNING: this value was determined based on the model's training distribution,
 #          model predictions above this speed can be unpredictable
 # V_CRUISE's are in kph
-V_CRUISE_MIN = 8
+V_CRUISE_MIN = 2 # was 8
 V_CRUISE_MAX = 145
 V_CRUISE_UNSET = 255
-V_CRUISE_INITIAL = 40
+V_CRUISE_INITIAL = 10 # was 40
 V_CRUISE_INITIAL_EXPERIMENTAL_MODE = V_CRUISE_INITIAL if not TICI else 105
 IMPERIAL_INCREMENT = 1.6  # should be CV.MPH_TO_KPH, but this causes rounding errors
 
@@ -41,7 +41,7 @@ CRUISE_INTERVAL_SIGN = {
 }
 
 # Constants for Limit controllers.
-LIMIT_ADAPT_ACC = -0.8  # (closer to zero ealier it decel) m/s^2 Ideal acceleration for the adapting (braking) phase when approaching speed limits.
+LIMIT_ADAPT_ACC = -1. #-0.8  # (closer to zero ealier it decel) m/s^2 Ideal acceleration for the adapting (braking) phase when approaching speed limits.
 LIMIT_MIN_ACC = -1.4    # m/s^2 Maximum deceleration allowed for limit controllers to provide.
 LIMIT_MAX_ACC = 1.0     # m/s^2 Maximum acelration allowed for limit controllers to provide while active.
 LIMIT_MIN_SPEED = 8.33  # m/s, Minimum speed limit to provide as solution on limit controllers.
