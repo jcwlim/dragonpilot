@@ -238,8 +238,8 @@ class LongitudinalPlanner:
 
   def get_df(self, v_ego):
     desired_tf = T_FOLLOW
-    if not self.dp_e2e_adapt_fp and self.mpc.mode == 'blended':
-      return desired_tf
+    #if not self.dp_e2e_adapt_fp and self.mpc.mode == 'blended':
+      #return desired_tf
     if self.dp_following_profile_ctrl:
       if self.dp_following_profile == 0:
         x_vel =  [1.1,  3.3,  5.5,    13.89,  19.7,   25.0,   41.67]
