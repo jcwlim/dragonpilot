@@ -54,14 +54,14 @@ FCW_IDXS = T_IDXS < 5.0
 T_DIFFS = np.diff(T_IDXS, prepend=[0.])
 MIN_ACCEL = -3.5
 MAX_ACCEL = 2.0
-T_FOLLOW = 1.45
+T_FOLLOW = 1.0 # was 1.45
 COMFORT_BRAKE = 2.5
 STOP_DISTANCE = 5.5
 
 def get_stopped_equivalence_factor(v_lead, v_ego):
   # KRKeegan this offset rapidly decreases the following distance when the lead pulls
   # away, resulting in an early demand for acceleration.
-  v_diff_offset = 0
+  v_diff_offset = 1.2 # was 0
   if np.all(v_lead - v_ego > 0):
     v_diff_offset = ((v_lead - v_ego) * 1.)
     v_diff_offset = np.clip(v_diff_offset, 0, STOP_DISTANCE / 2)
