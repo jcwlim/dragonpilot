@@ -1,3 +1,7 @@
+Version 0.9.4.1
+========================
+* Special adjustment of accel profile
+
 Version 0.9.4 (2023-XX-XX)
 ========================
 * Navigate on openpilot
