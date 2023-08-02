@@ -95,7 +95,7 @@ class DynamicEndtoEndController:
     # stop sign detection
     if abs(car_state.steeringAngleDeg) <= 60 and len(md.orientation.x) == len(md.position.x) == TRAJECTORY_SIZE:
       if md.position.x[TRAJECTORY_SIZE - 1] < interp(v_ego_kph, _DP_E2E_STOP_BP, _DP_E2E_STOP_DIST):
-        self.dp_e2e_stop_count += 1
+        self.dp_e2e_stop_count = 0 #was += 1
       else:
         self.dp_e2e_stop_count = 0
     else:
