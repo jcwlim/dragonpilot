@@ -59,7 +59,7 @@ STOP_DISTANCE = 6.0
 
 def get_jerk_factor(personality=log.LongitudinalPersonality.standard):
   if personality==log.LongitudinalPersonality.relaxed:
-    return 1.0
+    return 1.5 # was 1.0
   elif personality==log.LongitudinalPersonality.standard:
     return 1.0
   elif personality==log.LongitudinalPersonality.aggressive:
@@ -70,7 +70,7 @@ def get_jerk_factor(personality=log.LongitudinalPersonality.standard):
 
 def get_T_FOLLOW(personality=log.LongitudinalPersonality.standard):
   if personality==log.LongitudinalPersonality.relaxed:
-    return 1.75
+    return 1.25 #was 1.75
   elif personality==log.LongitudinalPersonality.standard:
     return 1.45
   elif personality==log.LongitudinalPersonality.aggressive:
@@ -81,7 +81,8 @@ def get_T_FOLLOW(personality=log.LongitudinalPersonality.standard):
 def get_dynamic_follow(v_ego, personality=log.LongitudinalPersonality.standard):
   if personality==log.LongitudinalPersonality.relaxed:
     x_vel =  [0,    3.05,   3.61,   4.16,   7.14,   11.11]
-    y_dist = [1.75, 1.75, 1.77, 1.75, 1.8,  1.8]
+    #y_dist = [1.75, 1.75, 1.77, 1.75, 1.8,  1.8]
+    y_dist = [1.15, 1.15, 1.16, 1.15, 1.22,  1.22]
   elif personality==log.LongitudinalPersonality.standard:
     x_vel =  [0,    3.05,   3.61,   4.16,   7.14,   11.11]
     y_dist = [1.5,  1.5,  1.51,  1.5,  1.5,  1.45]
