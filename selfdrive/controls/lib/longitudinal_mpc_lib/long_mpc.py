@@ -55,11 +55,11 @@ T_DIFFS = np.diff(T_IDXS, prepend=[0.])
 MIN_ACCEL = -3.5
 MAX_ACCEL = 2.0
 COMFORT_BRAKE = 2.5
-STOP_DISTANCE = 6.0
+STOP_DISTANCE = 8.0 #was 6.0
 
 def get_jerk_factor(personality=log.LongitudinalPersonality.standard):
   if personality==log.LongitudinalPersonality.relaxed:
-    return 1.5 # was 1.0
+    return 1.0 # was 1.0
   elif personality==log.LongitudinalPersonality.standard:
     return 1.0
   elif personality==log.LongitudinalPersonality.aggressive:
@@ -70,19 +70,22 @@ def get_jerk_factor(personality=log.LongitudinalPersonality.standard):
 
 def get_T_FOLLOW(personality=log.LongitudinalPersonality.standard):
   if personality==log.LongitudinalPersonality.relaxed:
-    return 1.25 #was 1.75
+    return 1.45 #was 1.75
   elif personality==log.LongitudinalPersonality.standard:
-    return 1.45
-  elif personality==log.LongitudinalPersonality.aggressive:
     return 1.25
+  elif personality==log.LongitudinalPersonality.aggressive:
+    return 1.0
   else:
     raise NotImplementedError("Longitudinal personality not supported")
 
-def get_dynamic_follow(v_ego, personality=log.LongitudinalPersonality.standard):
+def get_dynamic_follow(v_ego, personality=log.LongitudinalPersonality.relaxed):
   if personality==log.LongitudinalPersonality.relaxed:
-    x_vel =  [0,    3.05,   3.61,   4.16,   7.14,   11.11]
+    #x_vel =  [0,    3.05,   3.61,   4.16,   7.14,   11.11]
     #y_dist = [1.75, 1.75, 1.77, 1.75, 1.8,  1.8]
-    y_dist = [1.15, 1.15, 1.16, 1.15, 1.22,  1.22]
+    #y_dist = [1.15, 1.15, 1.16, 1.15, 1.22,  1.22]
+    x_vel =  [0, 3.05, 5.556, 19.7, 25.0, 41.67, 70.0, 90.0, 100.0]
+    #y_dist = [1.4,   1.6,    1.6 ]
+    y_dist = [0.1, 0.1, 1.1, 1.1,  1.1,  1.1, 1.1, 1.2, 2.0]
   elif personality==log.LongitudinalPersonality.standard:
     x_vel =  [0,    3.05,   3.61,   4.16,   7.14,   11.11]
     y_dist = [1.5,  1.5,  1.51,  1.5,  1.5,  1.45]
