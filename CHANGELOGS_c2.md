@@ -1,5 +1,10 @@
 dragonpilot [Latest] - EON/C2 Release
 ========================
+* Enhancement driving exprience for car with disable radar
+
+
+dragonpilot [Latest] - EON/C2 Release
+========================
 * Synced with openpilot master 2023.03.26 commits.
 * DP Highlight
   * NEW: Manual Lane Change.
