@@ -1,6 +1,7 @@
 dragonpilot [Latest] - EON/C2 Release
 ========================
 * Enhancement driving exprience for car with disable radar
+* Perfect the start accel
 
 
 dragonpilot [Latest] - EON/C2 Release
