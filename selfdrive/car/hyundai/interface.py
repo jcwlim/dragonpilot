@@ -245,7 +245,7 @@ class CarInterface(CarInterfaceBase):
 
     ret.stoppingControl = True
     ret.startingState = True
-    ret.vEgoStarting = 1.0 #0.05 #was 0.1 #when put 3.0, it will require driver to accel to trigger car moving.
+    ret.vEgoStarting = 0.5 #0.05 #was 0.1 #when put 3.0, it will require driver to accel to trigger car moving.
     ret.vEgoStopping = 0.25
     ret.startAccel = 0.3 #0.35 was 0.5 #was 1.0
     ret.longitudinalActuatorDelayLowerBound = 0.5
