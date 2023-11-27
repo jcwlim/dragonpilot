@@ -23,8 +23,10 @@ from openpilot.selfdrive.controls.lib.dynamic_endtoend_controller import Dynamic
 
 LON_MPC_STEP = 0.2  # first step is 0.2s
 A_CRUISE_MIN = -1.2
-A_CRUISE_MAX_VALS = [1.6, 1.2, 0.8, 0.6]
-A_CRUISE_MAX_BP = [0., 10.0, 25., 40.]
+#A_CRUISE_MAX_VALS = [1.6, 1.2, 0.8, 0.6] #[1.6, 1.2, 0.8, 0.6]
+#A_CRUISE_MAX_BP = [0., 10.0, 25., 40.]
+A_CRUISE_MAX_VALS = [1.2, 1.0, 0.8, 0.6]
+A_CRUISE_MAX_BP = [0., 15., 25., 40.]
 
 # Lookup table for turns
 _A_TOTAL_MAX_V = [1.7, 3.2]
