@@ -176,7 +176,7 @@ class DynamicEndtoEndController:
     # when detecting slow down scenario: blended
     # e.g. traffic light, curve, stop sign etc.
     if self._has_slow_down:
-      self._mode = 'blended'
+      #self._mode = 'blended'
       return
 
     # when detecting lead slow down: blended
