@@ -3,17 +3,17 @@ from common.numpy_fast import interp
 # d-e2e, from modeldata.h
 TRAJECTORY_SIZE = 33
 
-LEAD_WINDOW_SIZE = 5
-LEAD_PROB = 0.6
+LEAD_WINDOW_SIZE = 3 #5
+LEAD_PROB = 0.3 #0.6
 
 SLOW_DOWN_WINDOW_SIZE = 5
 SLOW_DOWN_PROB = 0.6
 SLOW_DOWN_BP = [0., 10., 20., 30., 40., 50., 55.] # not ori [0., 10., 20., 40., 50., 60., 70.] #
 SLOW_DOWN_DIST = [10, 30., 50., 70., 80., 90., 120.] # not ori [10, 20., 40., 60., 70., 80., 120.] #
 
-SLOWNESS_WINDOW_SIZE = 20
-SLOWNESS_PROB = 0.6
-SLOWNESS_CRUISE_OFFSET = 1.05
+SLOWNESS_WINDOW_SIZE = 10 #20
+SLOWNESS_PROB = 0.3 #0.6
+SLOWNESS_CRUISE_OFFSET = 1.3 #1.05
 
 DANGEROUS_TTC_WINDOW_SIZE = 5
 DANGEROUS_TTC = 1.55
@@ -206,7 +206,7 @@ class DynamicEndtoEndController:
       return
 
     if self._has_slow_down:
-      self._mode = 'blended'
+      #self._mode = 'blended'
       return
 
     if self._has_slowness:
