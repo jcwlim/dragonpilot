@@ -715,7 +715,11 @@ EVENTS: Dict[int, Dict[str, Union[Alert, AlertCallbackType]]] = {
 
   EventName.wrongGear: {
     # ET.SOFT_DISABLE: user_soft_disable_alert(_("Gear not D")), # To apply break hold.
-    ET.PERMANENT: NoEntryAlert(_("Gear not in D")),
+    ET.WARNING: Alert(
+      _("Gear not in D"),
+      "",
+      AlertStatus.normal, AlertSize.small,
+      Priority.LOW, VisualAlert.none, AudibleAlert.none, .1),
     ET.NO_ENTRY: NoEntryAlert(_("Gear not D")),
   },
 
