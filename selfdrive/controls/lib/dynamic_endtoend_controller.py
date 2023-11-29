@@ -3,16 +3,16 @@ from common.numpy_fast import interp
 # d-e2e, from modeldata.h
 TRAJECTORY_SIZE = 33
 
-LEAD_WINDOW_SIZE = 7 #5
-LEAD_PROB = 1.0 #0.6
+LEAD_WINDOW_SIZE = 6 #5
+LEAD_PROB = 0.6 #0.6
 
 SLOW_DOWN_WINDOW_SIZE = 5
 SLOW_DOWN_PROB = 0.6
 SLOW_DOWN_BP = [0., 10., 20., 30., 40., 50., 55.] # not ori [0., 10., 20., 40., 50., 60., 70.] #
 SLOW_DOWN_DIST = [10, 30., 50., 70., 80., 90., 120.] # not ori [10, 20., 40., 60., 70., 80., 120.] #
 
-SLOWNESS_WINDOW_SIZE = 30 #20
-SLOWNESS_PROB = 1.0 #0.6
+SLOWNESS_WINDOW_SIZE = 20 #20
+SLOWNESS_PROB = 0.6 #0.6
 SLOWNESS_CRUISE_OFFSET = 1.0 #1.05
 
 DANGEROUS_TTC_WINDOW_SIZE = 5
@@ -22,7 +22,7 @@ HIGHWAY_CRUISE_KPH = 50 #75
 
 STOP_AND_GO_FRAME = 500
 
-MODE_SWITCH_DELAY_FRAME = 500
+MODE_SWITCH_DELAY_FRAME = 100 #500
 
 
 class SNG_State:
@@ -223,7 +223,8 @@ class DynamicEndtoEndController:
       if radar_unavailable:
         self._blended_priority_mode()
       else:
-        self._acc_priority_mode()
+        self._blended_priority_mode()
+        #self._acc_priority_mode()
 
     self._mode_prev = self._mode
     return self._mode
