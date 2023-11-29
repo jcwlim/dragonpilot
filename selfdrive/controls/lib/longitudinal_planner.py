@@ -221,7 +221,7 @@ class LongitudinalPlanner:
     return self._set_dp_e2e_mode('acc')
 
   @staticmethod
-  def parse_model(model_msg, model_error):
+  def parse_model(model_msg, model_error, v_ego):
     if (len(model_msg.position.x) == 33 and
       len(model_msg.velocity.x) == 33 and
       len(model_msg.acceleration.x) == 33):
@@ -234,7 +234,18 @@ class LongitudinalPlanner:
       v = np.zeros(len(T_IDXS_MPC))
       a = np.zeros(len(T_IDXS_MPC))
       j = np.zeros(len(T_IDXS_MPC))
+
+
+    taco = True # Ensure taco tune
+
+    # rick - taco tune
+    if taco:
+      max_lat_accel = interp(v_ego, [5, 10, 20], [1.5, 2.0, 3.0])
+      curvatures = np.interp(T_IDXS_MPC, T_IDXS, model_msg.orientationRate.z) / np.clip(v, 0.3, 100.0)
+      max_v = np.sqrt(max_lat_accel / (np.abs(curvatures) + 1e-3)) - 2.0
+      v = np.minimum(max_v, v)
     return x, v, a, j
+
 
   def get_df(self, v_ego):
     desired_tf = T_FOLLOW
@@ -326,7 +337,7 @@ class LongitudinalPlanner:
     # self.mpc.set_weights(prev_accel_constraint)
     self.mpc.set_accel_limits(accel_limits_turns[0], accel_limits_turns[1])
     self.mpc.set_cur_state(self.v_desired_filter.x, self.a_desired)
-    x, v, a, j = self.parse_model(sm['modelV2'], self.v_model_error)
+    x, v, a, j = self.parse_model(sm['modelV2'], self.v_model_error, v_ego)
     self.dp_e2e_tf = self.get_df(v_ego)
     self.mpc.update(sm['radarState'], v_cruise_sol, x, v, a, j, prev_accel_constraint, self.dp_e2e_tf)
 
