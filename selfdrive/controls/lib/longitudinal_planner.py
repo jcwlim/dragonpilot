@@ -103,6 +103,9 @@ class LongitudinalPlanner:
       a = np.zeros(len(T_IDXS_MPC))
       j = np.zeros(len(T_IDXS_MPC))
 
+
+    taco = False # Avoid taco tune
+
     # rick - taco tune
     if taco:
       max_lat_accel = interp(v_ego, [5, 10, 20], [1.5, 2.0, 3.0])
