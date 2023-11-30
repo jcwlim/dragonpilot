@@ -55,4 +55,5 @@ struct DragonConf {
   dpE2EConditionalVoacc @47 :Bool;
   dpLongLeadMovingAlert @48 :Int8;
   dpLateralLcManual @49 :Bool;
+  controlsStateExt @110 :Custom.ControlsStateExt;
 }
