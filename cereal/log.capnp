@@ -11,9 +11,8 @@ struct Event {
   logMonoTime @0 :UInt64;  # nanoseconds
   valid @67 :Bool = true;
 
-  union {
 
-    # *********** Custom: reserved for forks ***********
-    controlsStateExt @110 :Custom.ControlsStateExt;
-  }
+  # *********** Custom: reserved for forks ***********
+  controlsStateExt @110 :Custom.ControlsStateExt;
+
 }
