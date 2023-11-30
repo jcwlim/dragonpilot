@@ -100,6 +100,7 @@ services = {
   "dragonConf": (False, 1.),
   # mapd
   "liveMapData": (True, 0.),
+  "controlsStateExt": (False, 100., 10),
 }
 service_list = {name: Service(new_port(idx), *vals) for  # type: ignore
                 idx, (name, vals) in enumerate(services.items())}
