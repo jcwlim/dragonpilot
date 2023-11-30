@@ -8,8 +8,6 @@ using Custom = import "custom.capnp";
 const logVersion :Int32 = 1;
 
 struct Event {
-  logMonoTime @0 :UInt64;  # nanoseconds
-  valid @67 :Bool = true;
 
 
   # *********** Custom: reserved for forks ***********
