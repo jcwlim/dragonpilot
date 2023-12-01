@@ -4,6 +4,7 @@ $Cxx.namespace("cereal");
 using Car = import "car.capnp";
 using Legacy = import "legacy.capnp";
 using Dp = import "dp.capnp";
+using Custom = import "custom.capnp";
 
 @0xf3b1f17e25a4285b;
 
@@ -2255,6 +2256,7 @@ struct Event {
 
     dragonConf @107 :Dp.DragonConf;
     liveMapData @108 :LiveMapData;
+    controlsStateExt @110 :Custom.ControlsStateExt;
 
     # *********** legacy + deprecated ***********
     model @9 :Legacy.ModelData; # TODO: rename modelV2 and mark this as deprecated
