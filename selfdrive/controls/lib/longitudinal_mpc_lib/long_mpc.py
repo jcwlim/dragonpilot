@@ -36,7 +36,7 @@ X_EGO_COST = 0.
 V_EGO_COST = 0.
 A_EGO_COST = 0.
 J_EGO_COST = 5.0
-A_CHANGE_COST = 190. #200.
+A_CHANGE_COST = 180. #200.
 DANGER_ZONE_COST = 100.
 CRASH_DISTANCE = .35 #.25
 LEAD_DANGER_FACTOR = 0.85 #0.75
@@ -82,11 +82,11 @@ def get_dynamic_follow(v_ego, personality=log.LongitudinalPersonality.standard):
     x_vel =  [0,    3.05,   3.61,   4.16,   7.14,   11.11]
     y_dist = [1.75, 1.75, 1.77, 1.75, 1.8,  1.8]
   elif personality==log.LongitudinalPersonality.standard:
-    # x_vel =  [0,    3.05,   3.61,   4.16,   7.14,   11.11]
-    # y_dist = [1.5,  1.5,  1.51,  1.5,  1.5,  1.45]
-    x_vel =  [0, 1.2, 2.2, 3.2, 4.2, 5.556, 10.7, 19.7, 25.0, 41.67, 70.0, 90.0, 100.0]
+    x_vel =  [0,    3.05,   3.61,   4.16,   7.14,   11.11]
+    y_dist = [1.5,  1.5,  1.51,  1.5,  1.5,  1.45]
+    #x_vel =  [0, 1.2, 2.2, 3.2, 4.2, 5.556, 10.7, 19.7, 25.0, 41.67, 70.0, 90.0, 100.0]
     #y_dist = [1.4,   1.6,    1.6 ]
-    y_dist = [1.0, 1.0, 1.0, 1.0, 1.0, 1.1, 1.1, 1.1,  1.1,  1.1, 1.1, 1.2, 2.0]
+    #y_dist = [1.0, 1.0, 1.0, 1.0, 1.0, 1.1, 1.1, 1.1,  1.1,  1.1, 1.1, 1.2, 2.0]
   elif personality==log.LongitudinalPersonality.aggressive:
     # x_vel =  [0,    3.05,   3.61,   4.16,   7.14,   11.11]
     # y_dist = [1.12, 1.12, 1.13, 1.12, 1.22, 1.22]
