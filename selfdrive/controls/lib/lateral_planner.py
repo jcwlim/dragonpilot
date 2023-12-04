@@ -16,7 +16,7 @@ from openpilot.selfdrive.controls.lib.lane_planner import LanePlanner
 
 TRAJECTORY_SIZE = 33
 if EON:
-  CAMERA_OFFSET = 0.09
+  CAMERA_OFFSET = 0.06
 else:
   CAMERA_OFFSET = 0.04
 
