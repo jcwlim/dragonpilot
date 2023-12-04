@@ -157,7 +157,7 @@ class DynamicEndtoEndController:
     # when blinker is on and speed is driving below highway cruise speed: blended
     # we dont want it to switch mode at higher speed, blended may trigger hard brake
     if self._has_blinkers and self._v_ego_kph < HIGHWAY_CRUISE_KPH:
-      self._mode = 'blended'
+      #self._mode = 'blended'
       return
 
     # when at highway cruise and SNG: blended
