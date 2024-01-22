@@ -1,6 +1,6 @@
 from cereal import car
 from common.conversions import Conversions as CV
-from common.numpy_fast import clip
+from common.numpy_fast import clip, interp
 from common.realtime import DT_CTRL
 from opendbc.can.packer import CANPacker
 from selfdrive.car import apply_driver_steer_torque_limits
@@ -48,7 +48,7 @@ class CarController:
     self.packer = CANPacker(dbc_name)
     self.angle_limit_counter = 0
     self.frame = 0
-
+    self.jerkStartLimit = 1.0
     self.accel_last = 0
     self.apply_steer_last = 0
     self.car_fingerprint = CP.carFingerprint
@@ -75,7 +75,7 @@ class CarController:
     # HUD messages
     sys_warning, sys_state, left_lane_warning, right_lane_warning = process_hud_alert(CC.enabled, self.car_fingerprint,
                                                                                       hud_control)
-
+    jerk = actuators.jerk
     can_sends = []
 
     # *** common hyundai stuff ***
@@ -176,18 +176,30 @@ class CarController:
         #stopping = stopping and CS.out.vEgoRaw < 0.05 #0.15
         # TODO: unclear if this is needed
         #jerk = 3.0 if actuators.longControlState == LongCtrlState.pid else 1.0
-        required_jerk = min(3, abs(accel - CS.out.aEgo) * 50)
-        # calculate jerk from plan, give a small offset for the upper limit for the cars ecu
-        lower_jerk = required_jerk
-        upper_jerk = required_jerk
-
-        if CS.out.aEgo < accel:
-          lower_jerk = 0
+        startingJerk = self.jerkStartLimit
+        jerkLimit = 5.0
+        self.jerk_count += DT_CTRL
+        jerk_max = interp(self.jerk_count, [0, 1.5, 2.5], [startingJerk, startingJerk, jerkLimit])
+        a_error = accel - CS.out.aEgo
+        v_error = actuators.speed - CS.out.vEgo
+        cb_upper = cb_lower = 0
+        if actuators.longControlState == LongCtrlState.off:
+          jerk_u = jerkLimit
+          jerk_l = jerkLimit          
+          self.jerk_count = 0
+        elif actuators.longControlState == LongCtrlState.stopping or hud_control.softHold:
+          jerk_u = 0.5
+          jerk_l = jerkLimit
+          self.jerk_count = 0
         else:
-          upper_jerk = 0
-        can_sends.extend(hyundaican.create_acc_commands(self.packer, CC.enabled, accel, upper_jerk, lower_jerk, int(self.frame / 2),
+          jerk_u = min(max(0.5, jerk * 2.0), jerk_max)
+          jerk_l = min(max(1.0, -jerk * 2.0), jerk_max)
+          cb_upper = clip(0.9 + accel * 0.2, 0, 1.2)
+          cb_lower = clip(0.8 + accel * 0.2, 0, 1.2)
+
+        can_sends.extend(hyundaican.create_acc_commands(self.packer, CC.enabled, accel, jerk_u, jerk_l, int(self.frame / 2),
                                                         hud_control.leadVisible, set_speed_in_units, stopping, CC.cruiseControl.override, 
-                                                        self.CP.flags & HyundaiFlags.USE_FCA))
+                                                        self.CP.flags & HyundaiFlags.USE_FCA, cb_upper, cb_lower))
         self.accel_last = accel
 
       # 20 Hz LFA MFA message
