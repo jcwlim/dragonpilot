@@ -364,6 +364,7 @@ struct CarControl {
     speed @6: Float32; # m/s
     accel @4: Float32; # m/s^2
     longControlState @5: LongControlState;
+    jerk @9: Float32; # myone
 
     enum LongControlState @0xe40f3a917d908282{
       off @0;
