@@ -76,7 +76,7 @@ class CarController:
     # HUD messages
     sys_warning, sys_state, left_lane_warning, right_lane_warning = process_hud_alert(CC.enabled, self.car_fingerprint,
                                                                                       hud_control)
-    jerk = 3.0 #actuators.jerk
+    jerk = 1.0 #actuators.jerk
     can_sends = []
 
     # *** common hyundai stuff ***
