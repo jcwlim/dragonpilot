@@ -75,7 +75,7 @@ class CarController:
     # HUD messages
     sys_warning, sys_state, left_lane_warning, right_lane_warning = process_hud_alert(CC.enabled, self.car_fingerprint,
                                                                                       hud_control)
-    jerk = actuators.jerk
+    jerk = 3.0 #actuators.jerk
     can_sends = []
 
     # *** common hyundai stuff ***
@@ -187,7 +187,7 @@ class CarController:
           jerk_u = jerkLimit
           jerk_l = jerkLimit          
           self.jerk_count = 0
-        elif actuators.longControlState == LongCtrlState.stopping or hud_control.softHold:
+        elif actuators.longControlState == LongCtrlState.stopping: # or hud_control.softHold:
           jerk_u = 0.5
           jerk_l = jerkLimit
           self.jerk_count = 0
