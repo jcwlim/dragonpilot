@@ -77,7 +77,7 @@ class CarController:
     sys_warning, sys_state, left_lane_warning, right_lane_warning = process_hud_alert(CC.enabled, self.car_fingerprint,
                                                                                       hud_control)
     #jerk = 1.0 #actuators.jerk
-    jerk = 0 if accel - self.accel_last <= 0 else accel -self.accel_last
+    jerk = accel - self.accel_last
 
     can_sends = []
 
