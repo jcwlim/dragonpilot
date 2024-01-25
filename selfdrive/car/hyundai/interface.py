@@ -251,11 +251,11 @@ class CarInterface(CarInterfaceBase):
     ret.pcmCruise = not ret.openpilotLongitudinalControl
 
     ret.stoppingControl = True
-    ret.startingState = False #True
-    ret.vEgoStarting = 0.5 #0.7 #0.05 #was 0.1 #when put 3.0, it will require driver to accel to trigger car moving.
-    ret.vEgoStopping = 0.3 #0.15 #0.25
+    ret.startingState = True
+    ret.vEgoStarting = 0.6 #0.7 #0.05 #was 0.1 #when put 3.0, it will require driver to accel to trigger car moving.
+    ret.vEgoStopping = 0.15 #0.15 #0.25
     ret.startAccel = 0.3 #0.35 was 0.5 #was 1.0
-    ret.stoppingDecelRate = 0.7 #1.2 # brake_travel/s while trying to stop
+    ret.stoppingDecelRate = 1.0 #1.2 # brake_travel/s while trying to stop
     ret.longitudinalActuatorDelayLowerBound = 0.5
     ret.longitudinalActuatorDelayUpperBound = 0.5
 
