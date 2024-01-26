@@ -180,7 +180,7 @@ class CarController:
         # TODO: unclear if this is needed
         #jerk = 3.0 if actuators.longControlState == LongCtrlState.pid else 1.0
         startingJerk = self.jerkStartLimit
-        jerkLimit = 5.0
+        jerkLimit = 3.5 #5.0
         self.jerk_count += DT_CTRL
         jerk_max = interp(self.jerk_count, [0, 1.5, 2.5], [startingJerk, startingJerk, jerkLimit])
         a_error = accel - CS.out.aEgo
