@@ -17,7 +17,7 @@ from openpilot.common.conversions import Conversions as CV
 
 TRAJECTORY_SIZE = 33
 if EON:
-  CAMERA_OFFSET = -0.06
+  CAMERA_OFFSET = -0.16
 else:
   CAMERA_OFFSET = 0.04
 

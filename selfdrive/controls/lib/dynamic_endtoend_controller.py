@@ -46,7 +46,7 @@ HIGHWAY_CRUISE_KPH = 75
 
 STOP_AND_GO_FRAME = 60
 
-SET_MODE_TIMEOUT = 10
+SET_MODE_TIMEOUT = 5 #10
 
 MPC_FCW_WINDOW_SIZE = 5
 MPC_FCW_PROB = 0.6
@@ -209,7 +209,7 @@ class DynamicEndtoEndController:
     # when detecting slow down scenario: blended
     # e.g. traffic light, curve, stop sign etc.
     if self._has_slow_down:
-      self._set_mode('blended')
+      self._set_mode('acc')
       return
 
     # when detecting lead slow down: blended
@@ -252,7 +252,7 @@ class DynamicEndtoEndController:
     # when detecting slow down scenario: blended
     # e.g. traffic light, curve, stop sign etc.
     if self._has_slow_down:
-      self._set_mode('blended')
+      self._set_mode('acc')
       return
 
     # car driving at speed lower than set speed: acc
