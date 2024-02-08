@@ -285,7 +285,8 @@ class Controls:
       # some HKGs doesnt have main buttons like other cars (e.g. EV6)
       if not self.CP.pcmCruise and self._dp_alka_btn_block_frame < self.sm.frame:
         # set/- is pressed
-        if any(be.type in (ButtonType.decelCruise, ButtonType.setCruise) for be in CS.buttonEvents):
+        # if any(be.type in (ButtonType.decelCruise, ButtonType.setCruise) for be in CS.buttonEvents):
+        if any(be.type in (ButtonType.altButton1, ButtonType.altButton2, ButtonType.altButton3, ButtonType.gapAdjustCruise) for be in CS.buttonEvents):
           self._dp_alka_active = not self._dp_alka_active
           # block activity for a sec
           self._dp_alka_btn_block_frame = self.sm.frame + 100

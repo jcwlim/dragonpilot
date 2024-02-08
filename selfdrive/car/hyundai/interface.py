@@ -288,8 +288,8 @@ class CarInterface(CarInterfaceBase):
     ret.pcmCruise = not ret.openpilotLongitudinalControl
 
     ret.stoppingControl = True
-    ret.startingState = True
-    ret.vEgoStarting = 0.5
+    ret.startingState = False #True
+    ret.vEgoStarting = 0.4
     ret.vEgoStopping = 0.3
     ret.startAccel = 0.2 #1.0
     #ret.stoppingDecelRate = 1.2 # brake_travel/s while trying to stop

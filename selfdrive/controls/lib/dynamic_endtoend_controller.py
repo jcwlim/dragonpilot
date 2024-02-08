@@ -252,7 +252,13 @@ class DynamicEndtoEndController:
     # when detecting slow down scenario: blended
     # e.g. traffic light, curve, stop sign etc.
     if self._has_slow_down:
-      self._set_mode('acc')
+      self._set_mode('blended')
+      return
+    
+    # when detecting lead slow down: blended
+    # use blended for higher braking capability
+    if self._has_dangerous_ttc:
+      self._set_mode('blended')
       return
 
     # car driving at speed lower than set speed: acc
