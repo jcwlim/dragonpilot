@@ -33,7 +33,8 @@ LEAD_PROB = 0.6
 SLOW_DOWN_WINDOW_SIZE = 5
 SLOW_DOWN_PROB = 0.6
 SLOW_DOWN_BP = [0., 10., 20., 30., 40., 50., 55.]
-SLOW_DOWN_DIST = [10, 30., 50., 70., 80., 90., 120.]
+#SLOW_DOWN_DIST = [10, 30., 50., 70., 80., 90., 120.]
+SLOW_DOWN_DIST = [8, 20., 50., 60., 80., 90., 120.]
 
 SLOWNESS_WINDOW_SIZE = 20
 SLOWNESS_PROB = 0.6
@@ -252,7 +253,7 @@ class DynamicEndtoEndController:
     # when detecting slow down scenario: blended
     # e.g. traffic light, curve, stop sign etc.
     if self._has_slow_down:
-      self._set_mode('blended')
+      self._set_mode('acc')
       return
     
     # when detecting lead slow down: blended
